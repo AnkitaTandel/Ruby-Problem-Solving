@@ -13,7 +13,7 @@ class Tree
   attr_accessor :root
   
   def initialize
-    @root = nil
+    @root
   end
   
   def preorder_traversal(root)
