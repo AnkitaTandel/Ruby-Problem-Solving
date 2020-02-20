@@ -10,10 +10,8 @@ end
 
 class LinkedList
   
-  attr_accessor :head
-  
-  @@falg = false
-  
+  attr_reader :head
+    
   def initialize
     @head
   end
@@ -35,16 +33,17 @@ class LinkedList
   def find_loop_with_hash
     current = @head
     hash = {}
+    flag = false
     until(current.nil?)
       if hash.key?(current)
-        @@flag = true
+        flag = true
         break
       end
       hash[current] = 1
       current = current.next
     end
     
-    if @@flag == true
+    if flag == true
       puts "Loop Found"
     else
       puts "Loop not Found"
@@ -53,15 +52,16 @@ class LinkedList
   
   def find_loop_with_ptrs
     slow_ptr, fast_ptr = @head, @head
+    flag = false
     while(slow_ptr and fast_ptr and fast_ptr.next)
       if slow_ptr == fast_ptr
-        @@flag = true
+        flag = true
         break
       end
       slow_ptr = slow_ptr.next
       fast_ptr = fast_ptr.next.next
     end
-    if @@flag == true
+    if flag == true
       puts "Loop Found"
     else
       puts "Loop not Found"
@@ -69,11 +69,12 @@ class LinkedList
   end
 end
 
-# llist = LinkedList.new
-# llist.push(20)
-# llist.push(4)
-# llist.push(15)
-# llist.push(10)
+llist = LinkedList.new
+llist.push(20)
+llist.push(4)
+llist.push(15)
+llist.push(10)
+llist.print
 
 # llist.head.next.next.next.next = llist.head
 
